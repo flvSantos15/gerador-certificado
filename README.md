@@ -25,7 +25,7 @@
 - **Production-ready** project using industry standards and patterns
 - Designed for **real-world industrial use cases**
 - Follows **SOLID principles** and clean code practices
-- Demonstrates proficiency in **golang applications**.
+- Demonstrates proficiency in **angular applications**.
 - Built with **recruiters and real jobs in mind**, showcasing a wide range of skills from system design to performance optimization
 
 ## 👤 About Me
