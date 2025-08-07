@@ -1,0 +1,46 @@
+.menu-certificado {
+  max-width: 800px;
+}
+
+.btn-voltar {
+  gap: 6px;
+}
+
+.btn-voltar p {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+  vertical-align: middle;
+  color: #64748b;
+}
+
+.btn-voltar i {
+  font-size: 20px;
+  color: #64748b;
+}
+
+.certificado {
+  margin-top: 32px;
+  background-image: url('../../../assets/certificate/certificate_bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 800px;
+  height: 550px;
+  border-radius: 12px;
+  position: relative;
+}
+
+.conteudo-certificado {
+  width: 720px;
+  height: 470px;
+  background-color: #ffffff;
+  border-radius: 8px;
+}
+
+.icone-medalha {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
