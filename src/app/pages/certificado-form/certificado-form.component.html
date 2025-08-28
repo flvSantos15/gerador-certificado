@@ -62,7 +62,12 @@
          </div>
         }
       </div>
-       <app-secondary-button [ngStyle]="campoInvalido(atividadeRef) ? { 'margin-bottom': '24px' } : {}"></app-secondary-button>
+       <app-secondary-button
+        [disabled]="atividade.length === 0"
+        textBotao="Adicionar"
+        phClass="ph ph-plus"
+        [ngStyle]="campoInvalido(atividadeRef) ? { 'margin-bottom': '24px' } : {}"
+      ></app-secondary-button>
      </div>
 
      <div class="atividade-group">
@@ -82,6 +87,6 @@
        </div>
      </div>
 
-    <app-primary-button></app-primary-button>
+    <app-primary-button [disabled]="form.invalid!" textBotao="Gerar certificado"></app-primary-button>
   </div>
 </form>
