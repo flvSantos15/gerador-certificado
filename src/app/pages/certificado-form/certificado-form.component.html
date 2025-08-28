@@ -40,7 +40,6 @@
         <label
           for="atividade"
           class="form-label"
-          [ngClass]="{'text-danger-label': campoInvalido(atividadeRef)}"
         >
           Atividade
         </label>
@@ -55,18 +54,13 @@
           class="form-control custom-input"
           placeholder="Atividade exercida"
         />
-        @if (campoInvalido(atividadeRef)) {
-          <div class="error-message d-flex align-items-center">
-            <i class="ph ph-warning-circle"></i>
-            <p class="m-0">O nome da atividade é obrigatorio</p>
-         </div>
-        }
+
       </div>
        <app-secondary-button
         [disabled]="atividade.length === 0"
         textBotao="Adicionar"
         phClass="ph ph-plus"
-        [ngStyle]="campoInvalido(atividadeRef) ? { 'margin-bottom': '24px' } : {}"
+        (click)="adicionarAtividade()"
       ></app-secondary-button>
      </div>
 
@@ -76,7 +70,7 @@
           @for (atividade of atividades; track $index) {
             <div class="item">
               <span class="itme-text">{{ atividade }}</span>
-              <div class="remove-btn">
+              <div class="remove-btn" (click)="removerAtividade($index)">
                 <i class="ph-bold ph-x"></i>
               </div>
             </div>
@@ -87,6 +81,6 @@
        </div>
      </div>
 
-    <app-primary-button [disabled]="form.invalid!" textBotao="Gerar certificado"></app-primary-button>
+    <app-primary-button [disabled]="!formValido()" textBotao="Gerar certificado"></app-primary-button>
   </div>
 </form>
