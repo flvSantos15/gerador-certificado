@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { Component, ViewChild } from '@angular/core';
+import { FormsModule, NgForm, NgModel } from '@angular/forms';
+import { v4 as uuidV4 } from 'uuid';
 import { PrimaryButtonComponent } from '../../_components/primary-button/primary-button.component';
 import { SecondaryButtonComponent } from '../../_components/secondary-button/secondary-button.component';
+import { CertificadoService } from '../../_services/certificado.service';
 import { ICertificado } from '../../interfaces/certificado';
 
 @Component({
@@ -19,10 +21,15 @@ import { ICertificado } from '../../interfaces/certificado';
 })
 export class CertificadoFormComponent {
   certificado: ICertificado = {
+    id: '',
     atividades: [],
-    nome: ''
+    nome: '',
+    dataEmissao: ''
   }
   atividade: string = ''
+  @ViewChild('form') form!: NgForm
+
+  constructor(private certificadoService: CertificadoService) { }
 
   campoInvalido(control: NgModel) {
     return control.invalid && control.touched
@@ -33,6 +40,9 @@ export class CertificadoFormComponent {
   }
 
   adicionarAtividade() {
+    if (this.atividade.length === 0) {
+      return
+    }
     this.certificado.atividades.push(this.atividade)
     this.atividade = ''
   }
@@ -45,6 +55,31 @@ export class CertificadoFormComponent {
     if (!this.formValido) {
       return
     }
-    this.certificado
+    this.certificado.id = uuidV4()
+    this.certificado.dataEmissao = this.pegarDataAtual()
+
+    this.certificadoService.adicionarCertificados(this.certificado)
+
+    this.certificado = this.pegarEstadoInicialCertificado()
+    this.form.resetForm()
+  }
+
+  pegarDataAtual() {
+    const dataAtual = new Date()
+    const dia = String(dataAtual.getDate()).padStart(2, '0')
+    const mes = String(dataAtual.getMonth() + 1).padStart(2, '0')
+    const ano = dataAtual.getFullYear()
+
+    const dataFormatada = `${dia}/${mes}/${ano}`
+    return dataFormatada
+  }
+
+  pegarEstadoInicialCertificado(): ICertificado {
+    return {
+      id: '',
+      atividades: [],
+      nome: '',
+      dataEmissao: ''
+    }
   }
 }
