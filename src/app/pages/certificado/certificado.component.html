@@ -6,31 +6,34 @@
     </div>
 
     <app-secondary-button
-
+      phClass="ph ph-download-simple"
+      textBotao="Download"
     ></app-secondary-button>
   </div>
 
-  <div class="certificado d-flex justify-content-center align-items-center">
-    <img src="assets/certificate/ribbon.png" class="icone-medalha" alt="ícone de medalha" />
-    <div class="conteudo-certificado">
-      <img src="assets/certificate/signature.svg" class="img-assinatura" alt="assinatura" />
-      <div class="info-certificado d-flex flex-column align-items-center">
-        <div class="titulo-subtitulo-certificado">
-          <h1>CERTIFICADO DE CONCLUSÃO</h1>
-          <p>Este cerfificado comprova que</p>
+  @if (certificado) {
+    <div class="certificado d-flex justify-content-center align-items-center">
+      <img src="assets/certificate/ribbon.png" class="icone-medalha" alt="ícone de medalha" />
+      <div class="conteudo-certificado">
+        <img src="assets/certificate/signature.svg" class="img-assinatura" alt="assinatura" />
+        <div class="info-certificado d-flex flex-column align-items-center">
+          <div class="titulo-subtitulo-certificado">
+            <h1>CERTIFICADO DE CONCLUSÃO</h1>
+            <p>Este cerfificado comprova que</p>
+          </div>
+
+          <p class="nome-aluno">{{certificado.nome}}</p>
+
+          <div class="lista-atividade-grupo">
+            <p class="lista-atividade-titulo">Concluiu com sucesso as seguintes atividades:</p>
+            <p class="lista-atividade">
+              {{certificado.atividades.join(',')}}
+            </p>
+          </div>
         </div>
 
-        <p class="nome-aluno">Ana Silva Lopes</p>
-
-        <div class="lista-atividade-grupo">
-          <p class="lista-atividade-titulo">Concluiu com sucesso as seguintes atividades:</p>
-          <p class="lista-atividade">
-            Introdução ao Angular, Configuração com Angular CLI, Criação de componentnes retutilizáveis, Manipulação de dados, Implementação de data biding, Criação de rotaas com Angular Router, Consumo de APIs REST
-          </p>
-        </div>
+        <p class="data-emissao">Emitido em {{ certificado.dataEmissao }}</p>
       </div>
-
-      <p class="data-emissao">Emitido em 25/04/2025</p>
     </div>
-  </div>
+  }
 </div>

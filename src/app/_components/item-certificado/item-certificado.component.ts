@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
 import { SecondaryButtonComponent } from '../secondary-button/secondary-button.component';
 
@@ -10,7 +10,9 @@ import { SecondaryButtonComponent } from '../secondary-button/secondary-button.c
   styleUrl: './item-certificado.component.css'
 })
 export class ItemCertificadoComponent {
-  id: string = '6'
+  @Input() nomeAluno: string = ''
+  @Input() dataEmissao: string = ''
+  @Input() id: string = ''
 
   constructor(private router: Router) { }
 
